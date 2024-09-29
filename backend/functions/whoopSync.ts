@@ -1,7 +1,7 @@
 export const handler = async (event: any) => {
-  console.log('Hello from Lambda!');
+  console.log('TODO: Sync Whoop data');
   return {
     statusCode: 200,
-    body: 'Hello from Lambda!',
+    body: 'TODO: Sync Whoop data',
   };
 };
