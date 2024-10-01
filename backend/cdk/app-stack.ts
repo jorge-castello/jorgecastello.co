@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as events from 'aws-cdk-lib/aws-events';
 import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
@@ -20,15 +21,14 @@ export class AppStack extends cdk.Stack {
    */
   private addSyncWhoopToBlog(): void {
     // Create the Lambda function
-    const syncWhoopToBlogLambda = new lambda.Function(
+    const syncWhoopToBlogLambda = new lambdaNodejs.NodejsFunction(
       this,
       'SyncWhoopToBlogLambda',
       {
         functionName: 'SyncWhoopToBlogLambda',
         runtime: lambda.Runtime.NODEJS_18_X,
         timeout: cdk.Duration.minutes(3),
-        handler: 'sync-whoop-to-blog.handler',
-        code: lambda.Code.fromAsset('functions'),
+        entry: 'functions/sync-whoop-to-blog.ts',
       }
     );
 
