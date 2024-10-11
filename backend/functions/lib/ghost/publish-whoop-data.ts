@@ -13,6 +13,7 @@ interface BlogPost {
   html: string;
   slug: string;
   status: string;
+  tags: { name: string }[];
   title: string;
   updated_at?: string;
 }
@@ -50,6 +51,7 @@ function getBlogPost(whoopData: DailyWhoopData): BlogPost {
     html,
     slug,
     status: 'published',
+    tags: [{ name: '#changelog' }],
     title: 'Whoop Data - ' + whoopData.date,
   };
 }
